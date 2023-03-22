@@ -40,8 +40,8 @@ class ProductSerializer(serializers.ModelSerializer):
             
         }
         
-    class ProductListSerializer(serializers.ModelSerializer):
+class ProductListSerializer(serializers.ModelSerializer):
         
-        class Meta:
-            model = Product
-            exclude = ('state', 'created_date', 'modified_date', 'deleted_date')
+    class Meta:
+        model = Product
+        exclude = ('state', 'created_date', 'modified_date', 'deleted_date')
