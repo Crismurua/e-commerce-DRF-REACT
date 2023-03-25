@@ -32,7 +32,7 @@ class ProductViewSet(viewsets.ModelViewSet):
             return  Response({'message': 'Product successfully created!'}, status=status.HTTP_201_CREATED)
         return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
-    def find(self, request, pk=None):
+    def retrieve(self, request, pk=None):
         product = self.get_queryset(pk)
         if product:
             product_serializer = ProductListSerializer(product)
@@ -48,7 +48,7 @@ class ProductViewSet(viewsets.ModelViewSet):
                 return Response({'message': 'Product successfully updated!'}, status=status.HTTP_200_OK)
             return Response({'message': '', 'error': product_serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
-    def delete(self, request, pk=None):
+    def destroy(self, request, pk=None):
         product = self.get_queryset().filter(id=pk).first()
         if product:
             product.state = False

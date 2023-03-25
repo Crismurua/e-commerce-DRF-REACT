@@ -39,7 +39,7 @@ class MeasureUnitViewSet(viewsets.GenericViewSet):
             return Response({'message': 'Measure Unit successfully created!'}, status=status.HTTP_201_CREATED)
         return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
-    def find(self, request, pk=None):
+    def retrieve(self, request, pk=None):
         if self.get_object().exists():
             data = self.get_object().get()
             data = self.get_serializer(data)
@@ -54,7 +54,7 @@ class MeasureUnitViewSet(viewsets.GenericViewSet):
                 return Response({'message': 'Measure Unit successfully updated!'}, status=status.HTTP_200_OK)
             return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
-    def delete(self, request, pk=None):
+    def destroy(self, request, pk=None):
         if self.get_object().exists():
             self.get_object().delete()
             return Response({'message': 'Measure Unit successfully deleted!'}, status=status.HTTP_200_OK)
@@ -94,7 +94,7 @@ class CategoryViewSet(viewsets.GenericViewSet):
             return Response({'message': 'Category successfully created!'}, status=status.HTTP_201_CREATED)
         return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
-    def find(self, request, pk=None):
+    def retrieve(self, request, pk=None):
         if self.get_object().exists():
             data = self.get_object().get()
             data = self.get_serializer(data)
@@ -109,7 +109,7 @@ class CategoryViewSet(viewsets.GenericViewSet):
                 return Response({'message': 'Category successfully updated!'}, status=status.HTTP_200_OK)
             return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
-    def delete(self, request, pk=None):
+    def destroy(self, request, pk=None):
         if self.get_object().exists():
             self.get_object().delete()
             return Response({'message': 'Category successfully deleted!'}, status=status.HTTP_200_OK)
@@ -149,7 +149,7 @@ class DiscountViewSet(viewsets.GenericViewSet):
             return Response({'message': 'Discount successfully created!'}, status=status.HTTP_201_CREATED)
         return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
-    def find(self, request, pk=None):
+    def retrieve(self, request, pk=None):
         if self.get_object().exists():
             data = self.get_object().get()
             data = self.get_serializer(data)
@@ -164,7 +164,7 @@ class DiscountViewSet(viewsets.GenericViewSet):
                 return Response({'message': 'Discount successfully updated!'}, status=status.HTTP_200_OK)
             return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
-    def delete(self, request, pk=None):
+    def destroy(self, request, pk=None):
         if self.get_object().exists():
             self.get_object().delete()
             return Response({'message': 'Discount successfully deleted!'}, status=status.HTTP_200_OK)

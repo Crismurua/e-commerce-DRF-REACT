@@ -59,6 +59,7 @@ THIRD_APPS = [
     'allauth.socialaccount.providers.facebook',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
+    'drf_yasg',
 ]
 
 SITE_ID = 1
@@ -69,7 +70,16 @@ JWT_AUTH_COOKIE = 'my-app-auth'
 
 INSTALLED_APPS = BASE_APPS + LOCAL_APPS + THIRD_APPS
 
-#AUTH_USER_MODEL = 'users.User'
+SWAGGER_SETTINGS = {
+    'DOC_EXPANSION': 'none'
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'dj_rest_auth.registration.serializers.RegisterSerializer',
+    'LOGIN_SERIALIZER': 'dj_rest_auth.serializers.LoginSerializer',
+}
+
+AUTH_USER_MODEL = 'users.CustomUser'
 
 REST_FRAMEWORK = {
 	'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -165,6 +175,7 @@ USE_TZ = True
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 LOGIN_URL = 'http://localhost:8000/users/login'
