@@ -3,12 +3,12 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from products.api import GeneralListApiView
-from products.models import MeasureUnit, Category, Discount
-from products.serializers.general_serializers import MeasureUnitSerializer, DiscountSerializer, CategorySerializer, DiscountUpdateSerializer
+from products.models import Size, Category, Discount
+from products.serializers.general_serializers import SizeSerializer, DiscountSerializer, CategorySerializer, DiscountUpdateSerializer
 
-class MeasureUnitViewSet(viewsets.GenericViewSet):
-    model = MeasureUnit
-    serializer_class = MeasureUnitSerializer
+class SizeViewSet(viewsets.GenericViewSet):
+    model = Size
+    serializer_class = SizeSerializer
     
     def get_queryset(self):
         return self.get_serializer().Meta.model.objects.filter(state=True)
@@ -18,8 +18,8 @@ class MeasureUnitViewSet(viewsets.GenericViewSet):
     
     @action(detail=False, methods=['GET'])
     def get_measure_units(self, request):
-        data = MeasureUnit.objects.filter(state=True)
-        data = MeasureUnitSerializer(data, many=True)
+        data = Size.objects.filter(state=True)
+        data = SizeSerializer(data, many=True)
         return Response(data.data)
     
     def list(self, request):
@@ -36,7 +36,7 @@ class MeasureUnitViewSet(viewsets.GenericViewSet):
         serializer = self.serializer_class(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response({'message': 'Measure Unit successfully created!'}, status=status.HTTP_201_CREATED)
+            return Response({'message': 'Size successfully created!'}, status=status.HTTP_201_CREATED)
         return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
     
     def retrieve(self, request, pk=None):
@@ -44,21 +44,21 @@ class MeasureUnitViewSet(viewsets.GenericViewSet):
             data = self.get_object().get()
             data = self.get_serializer(data)
             return Response(data.data)
-        return Response({'message': '', 'error': 'Measure Unit not found!'}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'message': '', 'error': 'Size not found!'}, status=status.HTTP_404_NOT_FOUND)
     
     def update(self, request, pk=None):
         if self.get_object().exists():
             serializer = self.serializer_class(instance=self.get_object().get(), data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response({'message': 'Measure Unit successfully updated!'}, status=status.HTTP_200_OK)
+                return Response({'message': 'Size successfully updated!'}, status=status.HTTP_200_OK)
             return Response({'message': '', 'error': serializer.errors}, status=status.HTTP_400_BAD_REQUEST)
         
     def destroy(self, request, pk=None):
         if self.get_object().exists():
             self.get_object().delete()
-            return Response({'message': 'Measure Unit successfully deleted!'}, status=status.HTTP_200_OK)
-        return Response({'message': '', 'error': 'Measure Unit not found'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'message': 'Size successfully deleted!'}, status=status.HTTP_200_OK)
+        return Response({'message': '', 'error': 'Size not found'}, status=status.HTTP_404_NOT_FOUND)
     
 
 class CategoryViewSet(viewsets.GenericViewSet):

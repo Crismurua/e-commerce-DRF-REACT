@@ -60,6 +60,7 @@ THIRD_APPS = [
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
     'drf_yasg',
+    'corsheaders',
 ]
 
 SITE_ID = 1
@@ -93,6 +94,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -199,6 +201,14 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
 
 
 # Default primary key field type

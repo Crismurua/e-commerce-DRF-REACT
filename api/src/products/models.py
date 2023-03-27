@@ -13,12 +13,12 @@ class BaseModel(models.Model):
         verbose_name='Base Model'
         verbose_name_plural='Base Models'
         
-class MeasureUnit(BaseModel):
-    measure_unit = models.CharField(max_length=50, blank=False, null=False, unique=True)
+class Size(BaseModel):
+    size = models.CharField(max_length=50, blank=False, null=False, unique=True)
     
     class Meta:
-        verbose_name='Measure Unit'
-        verbose_name_plural='Measure Units'
+        verbose_name='Size'
+        verbose_name_plural='Sizes'
         
     def __str__(self):
         return self.measure_unit
@@ -39,8 +39,9 @@ class Product(BaseModel):
     name = models.CharField(max_length=150, unique=True, blank=False, null=False)
     description = models.TextField(blank=False, null=False)
     image = models.ImageField(upload_to='products/', null=True, blank=True, default='products/default_product.png')
-    price = models.FloatField()
-    measure_unit = models.ForeignKey(MeasureUnit, on_delete=models.CASCADE, verbose_name='Measure Unit', null=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.PositiveIntegerField()
+    size = models.ForeignKey(Size, on_delete=models.CASCADE, verbose_name='Measure Unit', null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Category', null=True)  
     
     class Meta:

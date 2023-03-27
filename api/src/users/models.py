@@ -1,6 +1,13 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
 
+class State(models.Model):
+    name = models.CharField(max_length=100)
+
+class City(models.Model):
+    name = models.CharField(max_length=100)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
+
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
@@ -23,7 +30,8 @@ class CustomUser(AbstractBaseUser):
     last_name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='profile/', blank=True, default='profile/blank.png')
     phone = models.CharField(max_length=15, blank=True, null=True)
-    location = models.CharField(max_length=50, blank=True, null=True)
+    state = models.ForeignKey(State, blank=True, null=True, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, blank=True, null=True, on_delete=models.CASCADE)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

@@ -1,10 +1,10 @@
-from products.models import MeasureUnit, Category, Discount
+from products.models import Size, Category, Discount
 from rest_framework import serializers
 
-class MeasureUnitSerializer(serializers.ModelSerializer):
+class SizeSerializer(serializers.ModelSerializer):
     
     class Meta:
-        model = MeasureUnit
+        model = Size
         exclude = ('state', 'created_date', 'modified_date', 'deleted_date')
         
 class CategorySerializer(serializers.ModelSerializer):

@@ -1,15 +1,27 @@
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
+from .models import State, City
+
+class StateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = State
+        fields = '__all__'
+
+class CitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = City
+        fields = '__all__'
 
 class CustomRegisterSerializer(RegisterSerializer):
     image = serializers.ImageField(required=False)
     phone = serializers.CharField(required=False)
-    location = serializers.CharField(required=False)
+    state = StateSerializer(required=False)
+    city = CitySerializer(required=False)
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'password1', 'password2', 'image', 'first_name', 'last_name', 'phone', 'location')
+        fields = ('username', 'email', 'password1', 'password2', 'image', 'first_name', 'last_name', 'phone', 'state', 'city')
 
     def get_cleaned_data(self):
         super().get_cleaned_data()
@@ -21,14 +33,28 @@ class CustomRegisterSerializer(RegisterSerializer):
             'first_name': self.validated_data.get('first_name', ''),
             'last_name': self.validated_data.get('last_name', ''),
             'phone': self.validated_data.get('phone', ''),
-            'location': self.validated_data.get('location', ''),
+            'state': self.validated_data.get('state', ''),
+            'city': self.validated_data.get('city', ''),
         }
         
     def create(self, validated_data):
         user = super().create(validated_data)
         user.image = validated_data.get('image', '')
         user.phone = validated_data.get('phone', '')
-        user.location = validated_data.get('location', '')
+        state_id = validated_data.pop('state', None)
+        city_id = validated_data.pop('city', None)
+        if state_id is not None:
+            try:
+                state = State.objects.get(id=state_id)
+                user.state = state
+            except State.DoesNotExist:
+                pass
+        if city_id is not None:
+            try:
+                city = City.objects.get(id=city_id)
+                user.city = city
+            except City.DoesNotExist:
+                pass
         user.save()
         return user
 
@@ -36,7 +62,8 @@ class CustomRegisterSerializer(RegisterSerializer):
         user = super().save(request)
         user.image = self.validated_data.get('image', '')
         user.phone = self.validated_data.get('phone', '')
-        user.location = self.validated_data.get('location', '')
+        user.state = self.validated_data.get('state', '')
+        user.city = self.validated_data.get('city', '')
         user.save()
         return user
     
