@@ -11,6 +11,7 @@ urlpatterns = [
     path('signup/', CustomRegisterView.as_view()),
     path('login/', LoginView.as_view()),
     path('logout/', LogoutView.as_view()),
+    path('', include('users.routers')),
 
     path('verify-email/',
          VerifyEmailView.as_view(), name='rest_verify_email'),

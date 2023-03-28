@@ -74,3 +74,26 @@ class CustomRegisterSerializer(RegisterSerializer):
         if 'phone' in data and not data['phone'].isdigit():
             raise serializers.ValidationError("Phone number can only contain digits.")
         return data
+    
+class UpdateUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('first_name', 'last_name', 'image', 'phone', 'state', 'city')
+        
+class UserListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        
+    def to_representation(self, instance):
+        return {
+            'id': instance['id'],
+            'username': instance['username'],
+            'email': instance['email'],
+            'first_name': instance['first_name'],
+            'last_name': instance['last_name'],
+            'image': instance['image'],
+            'phone': instance['phone'],
+            'state': instance['state'],
+            'city': instance['city'],
+        }
+    
