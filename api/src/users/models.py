@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.db import models
+import uuid
 
 class State(models.Model):
     name = models.CharField(max_length=100)
@@ -24,6 +25,7 @@ class CustomUserManager(BaseUserManager):
         return self.create_user(email, password, **extra_fields)
 
 class CustomUser(AbstractBaseUser):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, db_index=True, editable=False)
     username = models.CharField(max_length=155, unique=True)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=50)

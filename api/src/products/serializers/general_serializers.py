@@ -1,4 +1,4 @@
-from products.models import Size, Category, Discount
+from products.models import Size, Category, Discount, Rating
 from rest_framework import serializers
 
 class SizeSerializer(serializers.ModelSerializer):
@@ -30,5 +30,11 @@ class DiscountUpdateSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Discount
+        exclude = ('state', 'created_date', 'modified_date', 'deleted_date')
+        
+class RatingSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Rating
         exclude = ('state', 'created_date', 'modified_date', 'deleted_date')
     

@@ -3,8 +3,8 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from products.api import GeneralListApiView
-from products.models import Size, Category, Discount
-from products.serializers.general_serializers import SizeSerializer, DiscountSerializer, CategorySerializer, DiscountUpdateSerializer
+from products.models import Size, Category, Discount, Rating
+from products.serializers.general_serializers import SizeSerializer, DiscountSerializer, CategorySerializer, DiscountUpdateSerializer, RatingSerializer
 
 class SizeViewSet(viewsets.GenericViewSet):
     model = Size
@@ -17,7 +17,7 @@ class SizeViewSet(viewsets.GenericViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=self.kwargs['pk'], state=True)
     
     @action(detail=False, methods=['GET'])
-    def get_measure_units(self, request):
+    def get_sizes(self, request):
         data = Size.objects.filter(state=True)
         data = SizeSerializer(data, many=True)
         return Response(data.data)
@@ -72,7 +72,7 @@ class CategoryViewSet(viewsets.GenericViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=self.kwargs['pk'], state=True)
     
     @action(detail=False, methods=['GET'])
-    def get_measure_units(self, request):
+    def get_categories(self, request):
         data = Category.objects.filter(state=True)
         data = CategorySerializer(data, many=True)
         return Response(data.data)
@@ -127,7 +127,7 @@ class DiscountViewSet(viewsets.GenericViewSet):
         return self.get_serializer().Meta.model.objects.filter(id=self.kwargs['pk'], state=True)
     
     @action(detail=False, methods=['GET'])
-    def get_measure_units(self, request):
+    def get_discounts(self, request):
         data = Discount.objects.filter(state=True)
         data = DiscountSerializer(data, many=True)
         return Response(data.data)
@@ -169,3 +169,9 @@ class DiscountViewSet(viewsets.GenericViewSet):
             self.get_object().delete()
             return Response({'message': 'Discount successfully deleted!'}, status=status.HTTP_200_OK)
         return Response({'message': '', 'error': 'Measure Unit not found'}, status=status.HTTP_404_NOT_FOUND)
+    
+    
+class RatingViewSet(viewsets.ModelViewSet):
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer  
+      

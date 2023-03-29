@@ -1,6 +1,6 @@
 import { LocalStorageTypes, Product } from "@/models";
-import { getLocalStorage, setLocalStorage } from "@/utils/localstorage.util";
-import { getProducts } from "@/utils/fetchers";
+import { getLocalStorage, setLocalStorage } from "@/utils";
+import { getProducts } from "@/utils";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState : Product[] = [];

@@ -14,6 +14,7 @@ class CitySerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class CustomRegisterSerializer(RegisterSerializer):
+    id = serializers.UUIDField()
     image = serializers.ImageField(required=False)
     phone = serializers.CharField(required=False)
     state = StateSerializer(required=False)
@@ -21,11 +22,12 @@ class CustomRegisterSerializer(RegisterSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'password1', 'password2', 'image', 'first_name', 'last_name', 'phone', 'state', 'city')
+        fields = ('id', 'username', 'email', 'password1', 'password2', 'image', 'first_name', 'last_name', 'phone', 'state', 'city')
 
     def get_cleaned_data(self):
         super().get_cleaned_data()
         return {
+            'id' : self.validated_data.get('id', ''),
             'username': self.validated_data.get('username', ''),
             'email': self.validated_data.get('email', ''),
             'password1': self.validated_data.get('password1', ''),
@@ -39,6 +41,7 @@ class CustomRegisterSerializer(RegisterSerializer):
         
     def create(self, validated_data):
         user = super().create(validated_data)
+        user.id = validated_data.get('id', '')
         user.image = validated_data.get('image', '')
         user.phone = validated_data.get('phone', '')
         state_id = validated_data.pop('state', None)

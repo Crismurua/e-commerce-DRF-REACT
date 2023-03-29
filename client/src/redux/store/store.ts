@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productSlice from "../states/products";
-import { Category, City, Discount, Product, Size, State, User } from "@/models";
+import { Category, City, Discount, Product, Size, State, User, Rating } from "@/models";
 import cartSlice from "../states/cart";
 
 export interface AppStore {
@@ -12,6 +12,7 @@ export interface AppStore {
     // discounts: Discount[];
     // states: State[];
     // cities: City[];
+    // rating: Rating[];
 }
 
 const store = configureStore<AppStore>({

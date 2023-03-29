@@ -1,6 +1,8 @@
 from django.db import models
 import uuid
 
+from users.models import CustomUser
+
 class BaseModel(models.Model):
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, db_index=True, editable=False)
     state = models.BooleanField(default=True)
@@ -40,7 +42,7 @@ class Product(BaseModel):
     description = models.TextField(blank=False, null=False)
     image = models.ImageField(upload_to='products/', null=True, blank=True, default='products/default_product.png')
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    stock = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField(default=0)
     size = models.ForeignKey(Size, on_delete=models.CASCADE, verbose_name='Measure Unit', null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, verbose_name='Category', null=True)  
     
@@ -61,4 +63,15 @@ class Discount(BaseModel):
         
     def __str__(self):
         return f'Discount: {self.discount_value} On Category: {self.category_product}'
+    
+class Rating(BaseModel):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    stars = models.IntegerField()
+    review = models.TextField(null=True, blank=True)
+    
+    class Meta:
+        unique_together = ('user', 'product')
+        verbose_name='Rating'
+        verbose_name_plural='Ratings'
     
