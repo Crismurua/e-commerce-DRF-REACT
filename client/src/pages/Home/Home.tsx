@@ -11,7 +11,19 @@ const Home : React.FC<HomeProps> = () => {
 			<img className={s.gaming} src="media/gaming-banner.jpg" alt="gaming" />
 			<img className={s.music} src="media/headphones.jpg" alt="headphones" />
 		</div>
-		
+		<section className={s.gallery}>
+			<h2>Trends</h2>
+			<div>
+				<div>Product 1</div>
+				<div>Product 2</div>
+				<div>Product 3</div>
+			</div>
+
+		</section>
+
+		<article className={s.sale}>
+			<img src="media/blackfriday.png" alt="blackfriday" />
+		</article>
 	</div >
 	);
 };

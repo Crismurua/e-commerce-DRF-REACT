@@ -1,8 +1,8 @@
 import { Provider } from "react-redux"
 import { Routes, Route } from "react-router-dom";
 import store from "./redux/store/store";
-import { Navbar } from "./components";
-import { Home } from "./pages";
+import { Navbar, Footer } from "./components";
+import { Home, Login } from "./pages";
 import './App.css';
 
 
@@ -13,7 +13,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
+      <Footer />
     </Provider>
   )
 }

@@ -1,0 +1,93 @@
+footer{
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+    color: #fff;
+    padding: 2rem;
+    justify-content: space-evenly;
+}
+
+footer > div{
+    border-right: 1px solid #555;
+    width: 33vw;
+    text-align: center;
+}
+
+.contact form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact input{
+    height: 2rem;
+    border-radius: 5%;
+}
+
+.contact button{
+    color: inherit;
+    background-color: black;
+    border: none;
+    border-radius: 5%;
+    height: 2rem;
+    margin: 0.5rem;
+}
+
+.contact button:hover{
+    background-color: #aaa;
+    color: black;
+}
+
+.social{
+    border: none;
+}
+
+.social div{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.social div i:hover{
+    color: #aaa;
+    cursor: pointer;
+}
+
+.links ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;  
+    justify-content: space-between; 
+    padding: 0; 
+}
+
+.links ul li:hover{
+    color: #aaa;
+    cursor: pointer;
+}
+
+.extra{
+    width: 100%;
+    border-top: 1px solid #555;
+    background-color: black;
+    height: 3rem;
+    color: #aaa;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.extra > div{
+    width: 30vw;
+    display: flex;
+    justify-content: center;
+}
+
+.extra div img{
+    height: auto;
+    max-width: 100%;
+    align-self: center;
+    width: 20vw;
+}
