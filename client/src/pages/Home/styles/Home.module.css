@@ -61,8 +61,11 @@
 }
 
 .gallery{
+    margin: 0;
+    box-sizing: border-box;
     padding: 2rem;
     background-color: #333;
+    width: 100%;
 }
 
 .gallery h2{

@@ -1,3 +1,125 @@
 .login{
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #555;
+}
 
+section{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+    border: 1px solid #555;
+    background-color: #fff;
+}
+
+section form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+section form input{
+    padding: 12px 12px 12px 12px;
+    width: 20vw;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Segoe UI",sans-serif;
+}
+
+section h2{
+    font-size: 3.5rem;
+    margin: 1rem;
+}
+
+section button{
+    margin-top: 1rem;
+    transition: background-color .3s, box-shadow .3s, opacity 0.3s;
+    
+    padding: 12px 12px 12px 12px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Segoe UI",sans-serif;
+    background-color: #555;
+    background-repeat: no-repeat;
+    background-position: 12px 11px;
+    cursor: pointer;
+}
+
+section button:hover{
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, .25);
+    opacity: 0.8;
+}
+
+.google{
+    transition: background-color .3s, box-shadow .3s;
+    
+    padding: 12px 16px 12px 42px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    
+    color: #757575;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Segoe UI",sans-serif;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=);
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 12px 11px;
+    cursor: pointer;
+}
+
+.google:hover{
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+.facebook{
+    transition: background-color .3s, box-shadow .3s;
+    
+    padding: 12px 16px 12px 42px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+    
+    color: #757575;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: "Segoe UI",sans-serif;
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDEyOCAxMjgiIGlkPSJTb2NpYWxfSWNvbnMiIHZlcnNpb249IjEuMSIgdmlld0JveD0iMCAwIDEyOCAxMjgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnIGlkPSJfeDMxX19zdHJva2UiPjxnIGlkPSJGYWNlYm9va18xXyI+PHJlY3QgZmlsbD0ibm9uZSIgaGVpZ2h0PSIxMjgiIHdpZHRoPSIxMjgiLz48cGF0aCBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik02OC4zNjksMTI4SDcuMDY1QzMuMTYyLDEyOCwwLDEyNC44MzYsMCwxMjAuOTM1ICAgIFY3LjA2NUMwLDMuMTYyLDMuMTYyLDAsNy4wNjUsMGgxMTMuODcxQzEyNC44MzcsMCwxMjgsMy4xNjIsMTI4LDcuMDY1djExMy44N2MwLDMuOTAyLTMuMTYzLDcuMDY1LTcuMDY0LDcuMDY1SDg4LjMxOFY3OC40MzEgICAgaDE2LjYzOGwyLjQ5MS0xOS4zMThIODguMzE4VjQ2Ljc4YzAtNS41OTMsMS41NTMtOS40MDQsOS41NzMtOS40MDRsMTAuMjI5LTAuMDA0VjIwLjA5NGMtMS43NjktMC4yMzUtNy44NDEtMC43NjEtMTQuOTA2LTAuNzYxICAgIGMtMTQuNzQ5LDAtMjQuODQ2LDkuMDAzLTI0Ljg0NiwyNS41MzV2MTQuMjQ2SDUxLjY4OHYxOS4zMThoMTYuNjgxVjEyOHoiIGZpbGw9IiM0NDYwQTAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgaWQ9IkZhY2Vib29rIi8+PC9nPjwvZz48L3N2Zz4=);
+    background-size:10%;
+    background-color: #eee;
+    background-repeat: no-repeat;
+    background-position: 10px;
+    cursor: pointer;
+}
+
+.facebook:hover{
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25), 0 2px 4px rgba(0, 0, 0, .25);
+}
+
+section h4, p, li{
+    font-family: Alkatra;
+}
+
+section p{
+    margin: 0.5rem;
+}
+
+section ul li{
+    margin: 1rem;
 }

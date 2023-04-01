@@ -32,8 +32,8 @@ const Navbar : React.FC<NavbarProps> = () => {
 		<>
 		<div className={s.container}>			
 			<div className={s.logo}>
-				<div className={s.img}>
-					<img className={s.imglogo} src="2.png" alt="logo"  onClick={()=>navigate('/')}/>
+				<div className={s.img} onClick={()=>navigate('/')}>
+					<img className={s.imglogo} src="2.png" alt="logo" />
 					<h2 className={`${s.textlogo} ${isLogoVisible ? s.visible : s.hidden}`}>Raven Store</h2>
 				</div>
 				<ul>
