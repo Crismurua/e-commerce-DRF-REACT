@@ -26,7 +26,7 @@ section form{
 }
 
 section form input{
-    padding: 12px 12px 12px 12px;
+    height: 2rem;
     width: 20vw;
     border-radius: 3px;
     box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
